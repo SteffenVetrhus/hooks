@@ -12,6 +12,8 @@ This is a newly initialized repository. Update this section as the project scope
 
 ```
 hooks/
+├── .claude/
+│   └── settings.json  # Claude Code hooks and settings
 ├── CLAUDE.md          # AI assistant guidance (this file)
 └── (project files)    # To be added
 ```
@@ -45,6 +47,13 @@ Update this tree as the project grows.
 ### Building
 
 - When a build system is added, document the build commands here
+
+## Hooks
+
+A `SessionStart` hook is configured in `.claude/settings.json`. It runs at the beginning of every Claude Code session and outputs a reminder that **all Python functions must have extensive comments**, including:
+
+- A detailed docstring explaining purpose, parameters, return values, and side effects
+- Inline comments for any non-trivial logic within function bodies
 
 ## Key Conventions for AI Assistants
 

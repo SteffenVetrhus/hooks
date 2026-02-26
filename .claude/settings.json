@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'IMPORTANT: All Python functions must have extensive comments. Every function definition should include a detailed docstring explaining its purpose, parameters, return values, and any side effects. Additionally, add inline comments for any non-trivial logic within function bodies.'"
+          }
+        ]
+      }
+    ]
+  }
+}
