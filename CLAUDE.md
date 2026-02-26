@@ -6,19 +6,24 @@ This file provides guidance for AI assistants (such as Claude Code) working in t
 
 **Repository:** `SteffenVetrhus/hooks`
 
-This is a newly initialized repository. Update this section as the project scope is defined.
+A Python FastAPI service providing CRUD operations for a **members** collection backed by [PocketBase](https://pocketbase.io/).
 
 ## Repository Structure
 
 ```
 hooks/
 ├── .claude/
-│   └── settings.json  # Claude Code hooks and settings
-├── CLAUDE.md          # AI assistant guidance (this file)
-└── (project files)    # To be added
+│   └── settings.json     # Claude Code hooks and settings
+├── app/
+│   ├── __init__.py
+│   ├── config.py          # Settings loaded from env vars / .env
+│   ├── main.py            # FastAPI app entry point
+│   ├── pocketbase_client.py  # Async HTTP client for PocketBase
+│   ├── routes.py          # CRUD endpoint definitions
+│   └── schemas.py         # Pydantic request/response models
+├── CLAUDE.md              # AI assistant guidance (this file)
+└── requirements.txt       # Python dependencies
 ```
-
-Update this tree as the project grows.
 
 ## Development Workflow
 
@@ -44,9 +49,22 @@ Update this tree as the project grows.
 - When a test framework is added, document the test commands here
 - Run tests before pushing changes
 
-### Building
+### Running
 
-- When a build system is added, document the build commands here
+```bash
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+The API will be available at `http://127.0.0.1:8000`. Interactive docs at `/docs`.
+
+#### Environment Variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `POCKETBASE_URL` | `http://127.0.0.1:8090` | PocketBase instance URL |
+| `POCKETBASE_ADMIN_EMAIL` | *(empty)* | Admin email (optional) |
+| `POCKETBASE_ADMIN_PASSWORD` | *(empty)* | Admin password (optional) |
 
 ## Hooks
 
