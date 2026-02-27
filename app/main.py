@@ -6,6 +6,7 @@ logo generation routers, and exposes a health-check endpoint at the root path.
 """
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.logo_routes import router as logo_router
 from app.organizations_routes import router as organizations_router
@@ -14,7 +15,17 @@ from app.routes import router as members_router
 app = FastAPI(
     title="Members, Organizations & Logo API",
     description="CRUD service for PocketBase collections and on-the-fly logo generation",
-    version="1.1.0",
+    version="1.2.0",
+)
+
+# Allow cross-origin requests from any origin so the React frontend can call
+# the API regardless of deployment topology (separate containers / domains).
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Register the members CRUD router
