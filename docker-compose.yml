@@ -20,8 +20,8 @@ services:
       - POCKETBASE_URL=${POCKETBASE_URL:-http://127.0.0.1:8090}
       - POCKETBASE_ADMIN_EMAIL=${POCKETBASE_ADMIN_EMAIL:-}
       - POCKETBASE_ADMIN_PASSWORD=${POCKETBASE_ADMIN_PASSWORD:-}
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 30s
@@ -37,7 +37,7 @@ services:
         # Point the React app at the backend. In Coolify you would set this to
         # the public URL of the api service, e.g. https://api.example.com
         VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
-    ports:
-      - "3000:80"
+    expose:
+      - "80"
     depends_on:
       - api
